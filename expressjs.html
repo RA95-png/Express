@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body{
+   text-align: center;
+   margin: 0 auto ;
+   padding: 4% 0 ;
+   color:rgb(8, 8, 8);
+   font-size: 25px;
+
+}
+.class-div{
+    width:200px ;
+    height: 200px;
+    margin: 0  0.5%   1%  ;
+    border: white 4px  solid ;
+    display :inline-block;
+    filter: grayscale(80%);
+}
+.class-div:hover{
+           filter: grayscale(0);
+            transform: scale(1.1);
+            cursor: pointer;
+}
+.photo{
+    top: 16%;
+    right: 0%;
+    z-index: 1;
+    width: 100%;
+    height: 80%;
+    text-align: center;
+    background: rgba(7, 7, 7, 0.6) ;
+}
+.new_img{
+    width: 70%;
+    height: 100%;
+    margin: 1%  0;
+    border:white  solid  2px ;
+
+    
+}
+.box_x{
+    color: white;
+       position: absolute;
+       top: 10px;
+       right: 25px;
+       font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+}
+.box_x:hover{
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 3px;
+    padding: 7px;
+}
+.left{
+    width: 25%;
+    height: 92%;
+    float: left;
+    position: absolute;
+    top: 3% ;
+    left: 25% ;
+}
+.right{
+    width: 25%;
+    height: 85%;
+    float: right ;
+    position: absolute;
+    top: 10% ;
+    right: 25% ;
+}
+.showMore{
+    color:white ;
+     background-color:black;
+      cursor: pointer; 
+      font-size:20px; float:left;
+}
+.photo::after{
+    content : "";
+    clear: both;
+    display: table ;
+}
+h1{
+    color: rgb(16, 16, 17);
+    text-align: center;
+    font-size: 130%;
+}
+#of{
+    color: white;
+}
+.para{
+    background: rgba(7, 7, 7, 0.781) ;
+    font-size: 25px;
+    position: relative;
+    top:-17% ;
+   left:32.5%;
+    width: 35%;
+    color: white;
+    display: block;
+}
+.back{
+    position: absolute;
+    top:48%;
+    left: 16%;
+    text-decoration: none;
+    color: white;
+    font-size: 30;
+}
+.back:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 3px 0 0 3px;
+    padding: 10px;
+}
+.next{
+    position: absolute;
+    top:48%;
+    right: 16%;
+    text-decoration: none;
+    color: white;
+}
+.next:hover{
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 3px 0 0 3px;
+    padding: 10px;
+}
+.picture{
+    background:rgb(109, 107, 107) ;
+     padding:1% 19%   0;
+}
+@media screen and (max-width:920px){
+.picture{
+    padding: 1% 15% 0 ;
+}}
+.class-img{
+    width: 100%;
+    height: 100%;
+    filter: grayscale(80%);
+}
+</style>
+​
+<body style="  background:rgb(109, 107, 107) ;">
+  <button id="a" style="background-color: black; padding: 3px; color: white;" onclick='main()'>Show More</button> 
+    <div class="picture" id ="picture"> </div>
+    <div  id="photo" class="photo"> </div>
+   
+</body>
+<!-- <script src="./app.js"></script> -->
+ <script>
+
+  var photo = document.getElementById("photo");
+    var showa = document.getElementById("a");
+    var picture = document.getElementById("picture");
+    var value, index = [],
+        array = [],
+        array_url = [],
+        array_text = [],
+        array_indexs = [],
+        array_src = [],
+        b = 0,
+        p = 1;
+        let page=1;
+    function main(){
+        let array=[1,2,3,4,5,6,7]
+    const myHeaders = new Headers({
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    });
+
+    fetch("http://localhost:3000/photos/"+page,{
+        method:'GET'
+    })
+    .then( res => res.json())
+   .then((data) => {
+       page++;
+   
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i])
+        document.getElementById("photo").innerHTML+='<img class="class-div" src='+data[i]+' onclick="show()">';
+    }
+    
+});
+  
+     let image=array.slice(1-3);
+    console.log(image);
+  }
+
+</script>
+</html>
